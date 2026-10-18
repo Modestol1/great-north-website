@@ -21,7 +21,7 @@ async function adminApi(request,env,path){
   if(typeof d.password!=='string'||d.password.length>256)return json({error:'Invalid credentials'},401);
   const parts=env.ADMIN_PASSWORD_HASH.split(':');if(parts.length!==3||parts[0]!=='pbkdf2')return json({error:'Owner login is misconfigured'},503);
   const salt=bytes(parts[1]);const expected=bytes(parts[2]);const key=await crypto.subtle.importKey('raw',enc.encode(d.password),'PBKDF2',false,['deriveBits']);
-  const derived=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:210000,hash:'SHA-256'},key,256));
+  const derived=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt, iterations:100000,hash:'SHA-256'},key,256));
   if(!same(expected,derived))return json({error:'Invalid credentials'},401);
   const payload=b64(JSON.stringify({role:'owner',exp:Date.now()+12*3600000,nonce:crypto.randomUUID()}));const sig=await hmac(env.ADMIN_SESSION_SECRET,payload);
   const r=json({ok:true});r.headers.append('set-cookie',`gn_session=${payload}.${sig}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=43200`);return r;
