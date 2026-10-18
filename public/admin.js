@@ -4,7 +4,7 @@ async function api(path,opts={}){const r=await fetch(path,{credentials:'same-ori
 function setMessage(s){$('#message').textContent=s}
 function showAuthed(on){$('#login').hidden=on;$('#dash').hidden=!on;$('#logout').hidden=!on}
 async function boot(){try{await api('/api/admin/me');showAuthed(true);await load()}catch{showAuthed(false)}}
-$('#loginForm').onsubmit=async e=>{e.preventDefault();$('#loginError').textContent='';try{await api('/api/admin/login',{method:'POST',body:JSON.stringify({password:e.target.password.value})});e.target.reset();showAuthed(true);await load()}catch(err){$('#loginError').textContent=err.message}};
+$('#loginForm').onsubmit=async e=>{e.preventDefault();$('#loginError').textContent='';try{await api('/api/admin/login',{method:'POST',body:JSON.stringify({password:e.target.elements.namedItem('password').value})});e.target.reset();showAuthed(true);await load()}catch(err){$('#loginError').textContent=err.message}};
 $('#logout').onclick=async()=>{try{await api('/api/admin/logout',{method:'POST',body:'{}'})}catch{}showAuthed(false)};
 $('#refresh').onclick=()=>load();
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('selected',x===b));loadList()});
