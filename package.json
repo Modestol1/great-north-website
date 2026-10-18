@@ -1,0 +1,1 @@
+{"name":"great-north-creative-arts","version":"1.0.0","type":"module","private":true,"scripts":{"dev":"wrangler dev","deploy":"wrangler deploy","db:local":"wrangler d1 execute great-north-orders --local --file=./schema.sql","db:remote":"wrangler d1 execute great-north-orders --remote --file=./schema.sql"},"devDependencies":{"wrangler":"^4.0.0"}}

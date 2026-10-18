@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS preorders (id TEXT PRIMARY KEY, reference TEXT NOT NULL UNIQUE, name TEXT NOT NULL, email TEXT NOT NULL, country TEXT NOT NULL, quantity INTEGER NOT NULL, notes TEXT, status TEXT NOT NULL DEFAULT 'new', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS bookings (id TEXT PRIMARY KEY, reference TEXT NOT NULL UNIQUE, name TEXT NOT NULL, email TEXT NOT NULL, service TEXT NOT NULL, meeting_format TEXT, preferred_date TEXT NOT NULL, timezone TEXT NOT NULL, notes TEXT, status TEXT NOT NULL DEFAULT 'new', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS ix_preorders_created ON preorders(created_at); CREATE INDEX IF NOT EXISTS ix_bookings_created ON bookings(created_at);
