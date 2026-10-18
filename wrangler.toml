@@ -7,4 +7,4 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "great-north-orders"
-database_id = "18d6a795-a4f5-450e-bf89-212582b34979"
+database_id = "adae244c-c71b-4912-bc04-aedd72725086"
