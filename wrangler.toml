@@ -6,5 +6,5 @@ directory = "./public"
 binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
-database_name = "great-north-orders"
+database_name = "great-north-db"
 database_id = "adae244c-c71b-4912-bc04-aedd72725086"
