@@ -81,5 +81,5 @@ export default {async fetch(request,env){
    const asset=new URL('/admin.html',u);const response=await env.ASSETS.fetch(new Request(asset,request));const h=new Headers(response.headers);h.set('cache-control','no-store');h.set('x-frame-options','DENY');h.set('content-security-policy',"default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'");return new Response(response.body,{status:response.status,headers:h});
   }
   return env.ASSETS.fetch(request);
- }catch(e){return json({error:'Service temporarily unavailable'},500)}
+ }catch(e){   console.error('Great North Worker exception:', e);   return json({error:'Service temporarily unavailable'},500); }
 }};
